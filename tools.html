@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>FOY LAB</title>
+	<title>TOOLS</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
@@ -16,7 +16,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-
+	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/skel.min.js"></script>
 	<script src="js/skel-layers.min.js"></script>
@@ -42,40 +42,60 @@
 			</ul>
 		</nav>
 	</header><!-- Banner -->
-	<section id="banner">
-		<div class="inner">
-			<h2>Foy Lab </h2>
-			<h3> University of Washington</h3>
-			<h3>Building better bloodwork tools</h3>
-		</div>
-	</section><!-- One -->
-	<!-- Three -->
-	<section id="three" class="wrapper style1">
+	<section id="main" class="wrapper style1">
+		<header class="major">
+			<h2>TOOLS</h2>
+		</header>
 		<div class="container">
-			<div class="row">
-				<div class="8u">
-					<section>
-						<h2>We develop computational methods for lab medicine</h2>
-						<div class="image fit"><img src="images/blood-adv.jpeg" alt="" width="500" height="340"></div>
-						<p>We are part of the Department of Laboratory Medicine & Pathology. Hospitals collect so much data through laboratory testing, and we want to use it better. 
-							We build computational tools to improve patient care, save clinician time, and uncover physiologic insights. Our approaches intersect 
-							math modelling and machine learning with large-scale, multi-modal clinical data. 
-							We work on problems across medicine, but are particularly focused on hematology, cardiology, and critical care. </p>
-					</section>
+			<section>
+				<p> We believe in open science. Whenever possible we share code and data resources. Some examples are
+					below. If you are interested in our tools or approaches and are having trouble with access or implementation,
+					please <a href="mailto:brodyfoy@uw.edu">contact us</a>.
+				</p>
+
+				<br><br>
+				<h2> Red cell differential </h2>
+				<div class="row double">
+					<div class="3u">
+						<a href="#" class="image"><img src="images/RBC-diff.png" alt="" width="130%"></a>
+					</div>
+					<div class="9u">
+						We built the RBC-diff, a computer vision tool for
+						quantifying
+						red cell dysfunction in large-field blood smear images. Code for the RBC-diff and a repository
+						of 10,000
+						expert-labelled red cell images are available <a
+							href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680/Computer-vision-quantitation-of-erythrocyte-shape">here</a>.
+					</div>
 				</div>
-				<div class="4u">
-					<hr>
-					<section>
-						<h3>RECENT NEWS</h3>
-						<ul class="alt">
-							<li>Mar 2024: Amrit and Gaurang join the lab</li>
-							<li>Dec 2023: Foy Lab opens!</li>
-							
-							<li>Item 2</li>
-						</ul>
-					</section>
+
+				<br><br>
+				<h2> Dynamic benchmarking of blood cell parameters </h2>
+				<div class="row double">
+					<div class="3u">
+						<a href="#" class="image"><img src="images/posdir_curve.png" alt="" width="130%"></a>
+					</div>
+					<div class="9u">
+						We created a tool for calculating positional and directional reference curves to benchmark
+						patients in
+						recovery from cardiac surgery. Code for this tool and an example dataset are available <a
+							href="https://www.nature.com/articles/s41467-022-32222-2#Sec19">here</a>.
+					</div>
 				</div>
-			</div>
+
+				<br><br>
+				<h2> RAW DATA ARCHIVING</h2>
+				<div class="row double">
+					<div class="3u">
+						<a class="image"><img src="images/flow-data.png" alt="" width="130%"></a>
+					</div>
+					<div class="9u">
+						We are currently building archives of raw data streams from various UW hematology lab
+						instruments to assist with research and clinical practice. If you are a UW medicine affiliated researcher interested in accessing these data
+						sources for clinical, operational, or research purposes please <a href="mailto:brodyfoy@uw.edu">email Brody</a>.
+					</div>
+				</div>
+			</section>
 		</div>
 	</section><!-- Footer -->
 	<footer id="footer">
