@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>RBC Differential - FOY LAB</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="description" content="Interactive demo for the RBC-diff, a computer vision-based RBC morphology classification system">
+	<meta name="keywords" content="RBC, red blood cells, morphology, computer vision, classification, hematology">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style-xlarge.css">
+	</noscript>
+
+	<!-- Demo-specific CSS -->
+	<link rel="stylesheet" href="css/demos.css">
+
+	<style>
+		.image-gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1.5em;
+			margin: 2em 0;
+		}
+
+		.image-card {
+			background: #fff;
+			border: 2px solid #e0e0e0;
+			border-radius: 6px;
+			padding: 1em;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.image-card:hover {
+			border-color: #629DD1;
+			box-shadow: 0 4px 8px rgba(98, 157, 209, 0.2);
+			transform: translateY(-2px);
+		}
+
+		.image-card.selected {
+			border-color: #629DD1;
+			background: #f0f8ff;
+			border-width: 3px;
+		}
+
+		.image-card img {
+			width: 100%;
+			height: 150px;
+			object-fit: cover;
+			border-radius: 4px;
+			background: #f9f9f9;
+		}
+
+		.image-card h4 {
+			margin: 0.75em 0 0.25em 0;
+			color: #555f66;
+			font-size: 0.9em;
+		}
+
+		.image-card p {
+			margin: 0;
+			font-size: 0.8em;
+			color: #888;
+		}
+
+		.selected-image-display {
+			margin: 2em 0;
+			text-align: center;
+		}
+
+		.selected-image-display img {
+			max-width: 100%;
+			max-height: 500px;
+			border: 1px solid #e0e0e0;
+			border-radius: 6px;
+		}
+
+		/* Magnifier styles */
+		.magnifier-container {
+			position: relative;
+			display: inline-block;
+			cursor: crosshair;
+		}
+
+		.magnifier-lens {
+			display: none;
+			position: absolute;
+			width: 150px;
+			height: 150px;
+			border: 3px solid #629DD1;
+			border-radius: 50%;
+			background-repeat: no-repeat;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+			            inset 0 0 10px rgba(98, 157, 209, 0.1);
+			pointer-events: none;
+			z-index: 100;
+		}
+
+		.magnifier-lens.active {
+			display: block;
+		}
+
+		/* Mobile: slightly smaller lens */
+		@media screen and (max-width: 736px) {
+			.magnifier-lens {
+				width: 120px;
+				height: 120px;
+			}
+		}
+	</style>
+</head>
+
+<body id="top">
+
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1><a href="index.html">FOY LAB</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="people.html">People</a></li>
+				<li><a href="research.html">Research</a></li>
+				<li><a href="publications.html">Publications</a></li>
+				<li><a href="tools.html">Tools</a></li>
+				<li><a href="demos.html">Demos</a></li>
+				<li><a href="media.html">Media</a></li>
+				<li><a href="join.html">Join</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Main -->
+	<section id="main" class="wrapper style1">
+		<header class="major">
+			<h2>RBC Differential</h2>
+			<p>Computer Vision Analysis of Red Blood Cell Morphology</p>
+		</header>
+		<div class="container">
+			<!-- RBC Demo Section -->
+			<section id="rbc-demo-section">
+				<!-- Introduction row -->
+				<div class="row">
+					<div class="12u">
+						<div style="background: #f0f8ff; padding: 1.5em; border-radius: 6px; border-left: 4px solid #629DD1; margin-bottom: 2em;">
+							<p style="margin: 0;">We developed the RBC-diff, a computer vision system for identifying red cell abnormalities. Select 
+							Select a patient case below, to view their blood smear, and identify dysmorphologous red cells!
+							Based on our <a href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680" target="_blank" style="font-weight: bold;">Blood Advances 2023 paper</a>.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Image Gallery -->
+				<div class="row">
+					<div class="12u">
+						<h3 style="color: #629DD1; border-bottom: 2px solid #629DD1; padding-bottom: 0.5em;">
+							Sample Blood Smears
+						</h3>
+						<p>Select a blood smear image to view its RBC morphology distribution:</p>
+						<div class="image-gallery" id="image-gallery"></div>
+					</div>
+				</div>
+
+				<!-- Selected Image Display -->
+				<div class="row" id="selected-image-section" style="display: none;">
+					<div class="12u">
+						<h3 style="color: #629DD1; border-bottom: 2px solid #629DD1; padding-bottom: 0.5em;">
+							Selected Image
+						</h3>
+						<div class="selected-image-display">
+							<div class="magnifier-container" id="magnifier-container">
+								<img id="selected-image" src="" alt="Selected blood smear">
+								<div class="magnifier-lens" id="magnifier-lens"></div>
+							</div>
+							<p id="selected-label" style="margin-top: 1em; font-size: 1.1em; font-weight: 500;"></p>
+						</div>
+						<div class="demo-controls" style="text-align: center; margin-top: 1em;">
+							<button id="fit-model-btn" class="button special" disabled>Select a case to begin</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Results Section -->
+				<div class="row" id="results-section" style="display: none; margin-top: 2em;">
+					<div class="12u">
+						<div class="demo-results">
+							<h3>Morphology Distribution</h3>
+							<div id="results-content"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Scientific context -->
+				<div class="row" style="margin-top: 3em;">
+					<div class="12u">
+						<div class="demo-info-box">
+							<h4>About This Method</h4>
+							<p><strong>What it does:</strong> The RBC-diff uses computer vision to detect abnormal cells. Individual cells are 
+								first detected using a simple binary filter. The model then calculates geometric features for each cell, and passes
+								it to a machine learning model for classification. This model has been robustly validated at the single-cell and smear-level 
+								against expert hematopathologist labels.</p>
+							<p><strong>RBC Shape Categories:</strong></p>
+							<ul style="margin-top: 0.5em;">
+								<li><strong>Microcytes:</strong> Small cells, often seen in iron deficiency and thalassemia</li>
+								<li><strong>Macrocytes:</strong> Large cells, often seen in B12/folate deficiency</li>
+								<li><strong>Elliptocytes:</strong> Elliptic cells, often due to genetic conditions such as hereditary elliptocytosis</li>
+								<li><strong>Schistocytes:</strong> Fragmented cells, indicative of hemolytic stress such as thrombotic microangiopathies</li>
+								<li><strong>Sickle Cells:</strong> Crescent-shaped cells, due to sickle cell disease</li>
+								<li><strong>Spiculated Cells:</strong> Cells with spiked edges (echinocytes and acanthocytes), due to many conditions, such as liver disease</li>
+								<li><strong>Teardrops:</strong> Teardrop-shaped cells, seen in myelofibrosis and other conditions</li>
+							</ul>
+							<p style="margin-top: 1em;"><strong>Clinical Applications:</strong> Automated RBC quantitation allows for more rapid and objective
+								diagnosis, prognosis, and monitoring of hematologic conditions.</p>
+							<p style="margin-top: 1em;"><strong>Code Availability:</strong> The code and training set images for the RBC morphology classification model are available from the
+								<a href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680" target="_blank">Blood Advances 2023 publication</a>, as supplementary materials.</p>
+							<p style="margin-top: 1em;"><strong>Learn more:</strong>
+								<a href="research.html">Our Research</a> |
+								<a href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680" target="_blank">Blood Advances 2023 Paper</a> |
+								<a href="publications.html">Publications</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Navigation -->
+				<div class="row" style="margin-top: 2em; padding-top: 2em; border-top: 2px solid #e0e0e0;">
+					<div class="6u 12u(mobile)">
+						<p><a href="demos.html" class="button">&larr; Back to All Demos</a></p>
+					</div>
+					<div class="6u 12u(mobile)" style="text-align: right;">
+						<p><a href="trajectory-demo.html" class="button alt">Try Trajectory Demo &rarr;</a></p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row double">
+				<div class="6u">
+					<h2>CONTACT</h2>
+					<p>Email: brodyfoy@uw.edu
+						<br> University of Washington
+						<br> Department of Laboratory Medicine & Pathology
+						<br> Room NW 120
+						<br> 1959 NE Pacific St, Seattle, WA, USA, 98195
+					</p>
+				</div>
+				<div class="6u">
+					<div class="row collapse-at-2">
+						<div class="6u">
+							<h3>LINKS</h3>
+							<ul class="alt">
+								<li><a href="people.html">People</a></li>
+								<li><a href="research.html">Research</a></li>
+								<li><a href="publications.html">Publications</a></li>
+								<li><a href="tools.html">Tools</a></li>
+								<li><a href="demos.html">Demos</a></li>
+								<li><a href="media.html">Media</a></li>
+								<li><a href="join.html">Join</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div class="copyright">
+		Designed adapted from: <a href="https://templated.co/">TEMPLATED</a>
+	</div>
+
+	<!-- Demo JavaScript -->
+	<script src="js/rbc-demo.js"></script>
+
+</body>
+
+</html>

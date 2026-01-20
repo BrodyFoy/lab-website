@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<!--
+	Ion by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>WBC-Platelet Trajectories - FOY LAB</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="description" content="Interactive demo of inflammatory recovery trajectories using WBC and platelet dynamics">
+	<meta name="keywords" content="WBC, platelet, inflammatory recovery, trajectories, hematology">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/skel.min.js"></script>
+	<script src="js/skel-layers.min.js"></script>
+	<script src="js/init.js"></script>
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/style-xlarge.css">
+	</noscript>
+
+	<!-- Demo-specific CSS -->
+	<link rel="stylesheet" href="css/demos.css">
+
+	<!-- External libraries for trajectory demo -->
+	<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+
+<body id="top">
+
+	<!-- Header -->
+	<header id="header" class="skel-layers-fixed">
+		<h1><a href="index.html">FOY LAB</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="people.html">People</a></li>
+				<li><a href="research.html">Research</a></li>
+				<li><a href="publications.html">Publications</a></li>
+				<li><a href="tools.html">Tools</a></li>
+				<li><a href="demos.html">Demos</a></li>
+				<li><a href="media.html">Media</a></li>
+				<li><a href="join.html">Join</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Main -->
+	<section id="main" class="wrapper style1">
+		<header class="major">
+			<h2>WBC-Platelet Recovery Trajectories</h2>
+			<p>Visualizing Inflammatory Recovery Dynamics</p>
+		</header>
+		<div class="container">
+			<!-- Trajectory Demo Section -->
+			<section id="trajectory-demo-section">
+				<!-- Introduction row -->
+				<div class="row">
+					<div class="12u">
+						<div style="background: #f0f8ff; padding: 1.5em; border-radius: 6px; border-left: 4px solid #629DD1; margin-bottom: 2em;">
+							<p style="margin: 0;">Explore how white blood cell (WBC) and platelet (PLT) counts co-evolve during inflammatory recovery.
+							Based on our <a href="https://www.nature.com/articles/s41467-022-32222-2" target="_blank" style="font-weight: bold;">Nature Communications 2022 paper</a>,
+							this tool visualizes recovery trajectories in 2D WBC-PLT phase-plane.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Control panel -->
+				<div class="row demo-controls">
+					<div class="9u 12u(mobile)">
+						<label for="wbc-input"><strong>WBC Count Values (10³/μL)</strong></label>
+						<textarea id="wbc-input"
+							placeholder="Enter comma-separated values (e.g., 15.2, 12.8, 10.5, 9.2, 8.1, 7.5)"
+							rows="2"></textarea>
+
+						<label for="plt-input" style="margin-top: 1em;"><strong>Platelet Count Values (10³/μL)</strong></label>
+						<textarea id="plt-input"
+							placeholder="Enter comma-separated values (e.g., 180, 200, 220, 235, 245, 250)"
+							rows="2"></textarea>
+
+						<p class="input-hint" style="margin-top: 0.5em; color: #666;">
+							<strong>Tip:</strong> Enter paired WBC and platelet values (same number of values in each). Minimum 3 time points required.
+						</p>
+					</div>
+
+					<div class="3u 12u(mobile)" style="display: flex; flex-direction: column; justify-content: center;">
+						<button id="load-sample" class="button alt fit" style="margin-bottom: 0.75em;">📊 Load Sample Data</button>
+						<button id="generate-trajectory" class="button special fit" disabled>🔬 Generate Trajectory</button>
+					</div>
+				</div>
+
+				<!-- Visualization area -->
+				<div class="row" style="margin-top: 2em;">
+					<div class="12u">
+						<h3 style="color: #629DD1; border-bottom: 2px solid #629DD1; padding-bottom: 0.5em;">
+							📈 Time Series View
+						</h3>
+						<div id="trajectory-timeseries-plot" class="demo-plot"></div>
+					</div>
+				</div>
+
+				<div class="row" style="margin-top: 1em;">
+					<div class="12u">
+						<h3 style="color: #629DD1; border-bottom: 2px solid #629DD1; padding-bottom: 0.5em;">
+							🔄 2D Trajectory in WBC-PLT Space
+						</h3>
+						<div id="trajectory-plot" class="demo-plot"></div>
+					</div>
+				</div>
+
+				<!-- Results panel -->
+				<div class="row" id="results-panel" style="display: none;">
+					<div class="12u">
+						<div class="demo-results">
+							<h3>Trajectory Analysis</h3>
+							<div id="results-content"></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Scientific context -->
+				<div class="row" style="margin-top: 3em;">
+					<div class="12u">
+						<div class="demo-info-box">
+							<h4>📖 About This Method</h4>
+							<p><strong>What it does:</strong> This tool visualizes the co-regulatory dynamics between white blood cells (WBC)
+								and platelets (PLT) during inflammatory recovery. These values are plotted against an example 'ideal' recovery trajectory,
+								 where PLT count increases linearly, and WBC count decays exponentially. We showed that this model accurately captures
+								 healthy recovery dynamics following acute inflammatory events (trauma, ischemia, infection). Significant deviations from 
+								 this trajectory were associated with drastically increased mortality, across diverse clinical settings.  
+								<br><br>
+								 <strong>Note:</strong> The reference trajectory is illustrative only. Exact, context-specific reference trajectories can be found in the associated 
+								 paper.
+
+							<p style="margin-top: 1em;"><strong>Learn more:</strong>
+								<a href="research.html">Our Research</a> |
+								<a href="https://www.nature.com/articles/s41467-022-32222-2" target="_blank">Nature Communications paper</a> |
+								<a href="publications.html">Publications</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Navigation -->
+				<div class="row" style="margin-top: 2em; padding-top: 2em; border-top: 2px solid #e0e0e0;">
+					<div class="6u 12u(mobile)">
+						<p><a href="demos.html" class="button">&larr; Back to All Demos</a></p>
+					</div>
+					<div class="6u 12u(mobile)" style="text-align: right;">
+						<p><a href="gmm-demo.html" class="button alt">Try GMM Demo &rarr;</a></p>
+					</div>
+				</div>
+			</section>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row double">
+				<div class="6u">
+					<h2>CONTACT</h2>
+					<p>Email: brodyfoy@uw.edu
+						<br> University of Washington
+						<br> Department of Laboratory Medicine & Pathology
+						<br> Room NW 120
+						<br> 1959 NE Pacific St, Seattle, WA, USA, 98195
+					</p>
+				</div>
+				<div class="6u">
+					<div class="row collapse-at-2">
+						<div class="6u">
+							<h3>LINKS</h3>
+							<ul class="alt">
+								<li><a href="people.html">People</a></li>
+								<li><a href="research.html">Research</a></li>
+								<li><a href="publications.html">Publications</a></li>
+								<li><a href="tools.html">Tools</a></li>
+								<li><a href="demos.html">Demos</a></li>
+								<li><a href="media.html">Media</a></li>
+								<li><a href="join.html">Join</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div class="copyright">
+		Designed adapted from: <a href="https://templated.co/">TEMPLATED</a>
+	</div>
+
+	<!-- Demo JavaScript -->
+	<script src="js/trajectory-demo.js"></script>
+
+</body>
+
+</html>

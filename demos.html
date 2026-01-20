@@ -7,24 +7,28 @@
 <html>
 
 <head>
-	<title>TOOLS</title>
+	<title>DEMOS - FOY LAB</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
+	<meta name="description" content="Interactive demonstrations of computational methods developed in the Foy Lab">
+	<meta name="keywords" content="gaussian mixture model, machine learning, hematology, computational biology">
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 	<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-	
+
 	<script src="js/jquery.min.js"></script>
 	<script src="js/skel.min.js"></script>
 	<script src="js/skel-layers.min.js"></script>
-	<script src="js/init.js"></script><noscript>
+	<script src="js/init.js"></script>
+	<noscript>
 		<link rel="stylesheet" href="css/skel.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/style-xlarge.css">
 	</noscript>
+
+	<!-- Demo-specific CSS -->
+	<link rel="stylesheet" href="css/demos.css">
 </head>
 
 <body id="top">
@@ -43,78 +47,71 @@
 				<li><a href="join.html">Join</a></li>
 			</ul>
 		</nav>
-	</header><!-- Banner -->
+	</header>
+
+	<!-- Main -->
 	<section id="main" class="wrapper style1">
 		<header class="major">
-			<h2>TOOLS</h2>
+			<h2>INTERACTIVE DEMOS</h2>
 		</header>
 		<div class="container">
 			<section>
-				<p> We believe in open science. Whenever possible we share code and data resources. Some examples are
-					below. If you are interested in our tools or approaches and are having trouble with access or implementation,
-					please <a href="mailto:brodyfoy@uw.edu">contact us</a>.
-				</p>
+				<p>Explore interactive demonstrations of computational methods developed in the Foy Lab.</p>
+			</section>
 
+			<!-- Demo Cards -->
+			<section>
 				<br><br>
-				<h2> Urine drug testing auto-interpreter </h2>
+
+				<!-- GMM Demo -->
 				<div class="row double">
 					<div class="3u">
-						<a href="#" class="image"><img src="images/urine-signout.png" alt="" width="130%"></a>
+						<span class="image fit"><img src="images/setpoints.png" alt="Haematological setpoints figure from Nature 2024" /></span>
 					</div>
 					<div class="9u">
-						We created a machine learning tool which can interpret results of urine drug testing (immunoassays, mass spectrometry, etc.)
-						and then generate a preliminary clinical sign-out. This tool is in active deployment to aid UW Medicine's clinical chemistry service.
-						We can't share data or code yet - but will publish our findings soon.
-					</div>
-				</div>
-
-
-
-				<br><br>
-				<h2> Red cell differential </h2>
-				<div class="row double">
-					<div class="3u">
-						<a href="#" class="image"><img src="images/RBC-diff.png" alt="" width="130%"></a>
-					</div>
-					<div class="9u">
-						We built the RBC-diff, a computer vision tool for
-						quantifying
-						red cell dysfunction in large-field blood smear images. Code for the RBC-diff and a repository
-						of 10,000
-						expert-labelled red cell images are available <a
-							href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680/Computer-vision-quantitation-of-erythrocyte-shape">here</a>.
+						<h3><a href="gmm-demo.html">Gaussian Mixture Models for Setpoint Identification</a></h3>
+						<p>Identify patient-specific setpoints in blood count data using Gaussian Mixture Models.
+							Automatically fits optimal models to time series data and visualizes the results with
+							dynamic confidence intervals.</p>
+						<p><a href="gmm-demo.html" class="button special">Try Demo</a></p>
 					</div>
 				</div>
 
 				<br><br>
-				<h2> Dynamic benchmarking of blood cell parameters </h2>
+
+				<!-- WBC-Platelet Trajectory Demo -->
 				<div class="row double">
 					<div class="3u">
-						<a href="#" class="image"><img src="images/posdir_curve.png" alt="" width="130%"></a>
+						<span class="image fit"><img src="images/WBC-PLT_traj.png" alt="WBC-Platelet recovery trajectory from Nature Communications 2022" /></span>
 					</div>
 					<div class="9u">
-						We created a tool for calculating positional and directional reference curves to benchmark
-						patients in
-						recovery from cardiac surgery. Code for this tool and an example dataset are available <a
-							href="https://www.nature.com/articles/s41467-022-32222-2#Sec19">here</a>.
+						<h3><a href="trajectory-demo.html">WBC-Platelet Recovery Trajectories</a></h3>
+						<p>Visualize inflammatory recovery dynamics by plotting WBC and platelet counts in 2D trajectory space.
+							Explore co-regulatory patterns that indicate recovery stage from acute inflammatory events.</p>
+						<p><a href="trajectory-demo.html" class="button special">Try Demo</a></p>
 					</div>
 				</div>
 
 				<br><br>
-				<h2> RAW DATA ARCHIVING</h2>
+
+				<!-- RBC Shape Classification Demo -->
 				<div class="row double">
 					<div class="3u">
-						<a class="image"><img src="images/flow-data.png" alt="" width="130%"></a>
+						<span class="image fit"><img src="images/RBC-diff.png" alt="RBC shape classification from Blood Advances 2023" /></span>
 					</div>
 					<div class="9u">
-						We are currently building archives of raw data streams from various UW hematology lab
-						instruments to assist with research and clinical practice. If you are a UW medicine affiliated researcher interested in accessing these data
-						sources for clinical, operational, or research purposes please <a href="mailto:brodyfoy@uw.edu">email Brody</a>.
+						<h3><a href="rbc-demo.html">RBC Shape Classification</a></h3>
+						<p>Demonstrate computer vision-based classification of red blood cell morphologies.
+							Analyze sample blood smears to quantify normal cells, sickle cells, spherocytes, and other RBC shapes.</p>
+						<p><a href="rbc-demo.html" class="button special">Try Demo</a></p>
 					</div>
 				</div>
+
 			</section>
 		</div>
-	</section><!-- Footer -->
+	</section>
+
+	<!-- Footer -->
 	<footer id="footer">
 		<div class="container">
 			<div class="row double">
