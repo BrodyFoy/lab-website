@@ -45,10 +45,24 @@
 		</header>
 		<div class="container">
 			<section>
-				<p> We believe in open science. Whenever possible we share code and data resources. Some examples are
-					below. If you are interested in our tools or approaches and are having trouble with access or implementation,
-					please <a href="mailto:brodyfoy@uw.edu">contact us</a>.
+				<p> We believe in open science. We try to always publish our analysis code and open-source our tools. When possible we also share data publicly
+					(note: this isn't always feasible for clinical data, given privacy/safety constraints). If you are interested in our tools or approaches and 
+					are having trouble with access and/or implementation, please <a href="mailto:brodyfoy@uw.edu">contact us</a>.
 				</p>
+
+				<br><br>
+				<h2> Personalized reference intervals </h2>
+				<div class="row double">
+					<div class="3u">
+						<a href="#" class="image"><img src="images/setpoints_old.png" alt="" width="130%"></a>
+					</div>
+					<div class="9u">
+						We created a Bayesian inference framework to construct personalized reference intervals for common clinical tests, using a patient's health 
+						record history. The code for this is available on <a href="https://github.com/cnmnzhang/perRI/tree/main/perri">GitHub</a>, with an expansive 
+						validation study published as a <a href="https://www.medrxiv.org/content/10.64898/2026.05.28.26354363v1">pre-print</a>.
+					</div>
+				</div>
+
 
 				<br><br>
 				<h2> Urine drug testing auto-interpreter </h2>
@@ -59,11 +73,9 @@
 					<div class="9u">
 						We created a machine learning tool which can interpret results of urine drug testing (immunoassays, mass spectrometry, etc.)
 						and then generate a preliminary clinical sign-out. This tool is in active deployment to aid UW Medicine's clinical chemistry service.
-						We can't share data or code yet - but will publish our findings soon.
+						We published a development and validation study in <a href="https://jamanetwork.com/journals/jamanetworkopen/article-abstract/2850599">JAMA Network Open</a>.
 					</div>
 				</div>
-
-
 
 				<br><br>
 				<h2> Red cell differential </h2>
@@ -72,11 +84,9 @@
 						<a href="#" class="image"><img src="images/RBC-diff.png" alt="" width="130%"></a>
 					</div>
 					<div class="9u">
-						We built the RBC-diff, a computer vision tool for
-						quantifying
+						We built the RBC-diff, a computer vision tool for quantifying
 						red cell dysfunction in large-field blood smear images. Code for the RBC-diff and a repository
-						of 10,000
-						expert-labelled red cell images are available <a
+						of 10,000 expert-labelled red cell images are available <a
 							href="https://ashpublications.org/bloodadvances/article/7/16/4621/495680/Computer-vision-quantitation-of-erythrocyte-shape">here</a>.
 					</div>
 				</div>
@@ -89,8 +99,7 @@
 					</div>
 					<div class="9u">
 						We created a tool for calculating positional and directional reference curves to benchmark
-						patients in
-						recovery from cardiac surgery. Code for this tool and an example dataset are available <a
+						patients in recovery from cardiac surgery. Code for this tool and an example dataset are available <a
 							href="https://www.nature.com/articles/s41467-022-32222-2#Sec19">here</a>.
 					</div>
 				</div>
